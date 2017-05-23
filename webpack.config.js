@@ -41,10 +41,11 @@ const config = {
       }]
     },{
       test: /\.scss$/,
-      loader: extractCSS.extract(['css-loader','sass-loader'])
+      loader: ['style-loader', 'css-loader','sass-loader'] //extractCSS.extract(['css-loader','sass-loader'])
     }]
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
     extractCSS,
     extractCommons
   ]
