@@ -7,11 +7,14 @@ const extractCommons = new webpack.optimize.CommonsChunkPlugin({
   filename: 'commons.js'
 })
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const extractCSS = new ExtractTextPlugin('[name].bundle.css')
+
 const config = {
   context: path.resolve(__dirname, 'src'),
   entry: {
     app: './app.js',
-    admin: './admin.js'
+    admin: './admin.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -37,14 +40,11 @@ const config = {
       }]
     },{
       test: /\.scss$/,
-      use: [
-      'style-loader',
-      'css-loader',
-      'sass-loader'
-      ]
+      loader: extractCSS.extract(['css-loader','sass-loader'])
     }]
   },
   plugins: [
+    extractCSS,
     extractCommons
   ]
 }
