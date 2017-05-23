@@ -1,5 +1,5 @@
 const people = [{
-  manager: 'Jen',
+  manager: 'Sergio',
   name: 'Bob'
 }, {
   manager: 'Jen',
